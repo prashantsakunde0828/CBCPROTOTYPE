@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+
+    <!-- fONT INTER -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+
+    <!-- iCheck -->
+
+    <!-- New Icon Card CSS Start -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- New Icon Card CSS End -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link href="../../../css/styles.css" rel="stylesheet" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <style>
+      
+        
+    /* Base styles */
+    .ul-flex {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
+
+    .li-que {
+        width: 50%;
+    }
+
+    .bg-green {
+        background: green;
+        color: white;
+        border-radius: 10px;
+        width: 60px;
+    }
+    .savingaccount{
+      
+        width: 40%; /* Adjust the width as needed */
+       max-width: 40%; /* Adjust the width as needed */
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+           height: 620px;
+    }
+    .deposit {
+            width: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+            max-width: 50%; /* Adjust the width as needed */
+            font-size: 14px; /* Reduced font size */
+            height: 600px;
+          
+        }
+
+    /* Styles for larger screens */
+   
+
+    /* Styles for smaller screens */
+    @media screen and (max-width: 767px) {
+     .ul-flex{
+     flex-direction: column;
+     }
+
+        .savingaccount { width: 100%; border:2px solid green ; padding: 10px; white-space: wrap; 
+                max-width: none;
+                font-size: 14px; 
+                height: auto;
+        }
+        .deposit {
+            width: 100%; 
+            max-width: none;
+            font-size: 12px; /* Reduced font size for smaller screens */
+            height: auto; /* Auto height for smaller screens */
+          
+        }
+    }
+
+    @media screen and (max-width: 968px) {
+        .savingaccount {
+            width: 100%; /* Adjust the width as needed */
+          
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+           border: 2px solid green;
+           height: auto;
+        }
+
+        .deposit {
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+         
+            font-size: 14px; /* Reduced font size */
+            height: auto;
+          
+        }
+    }
+
+    @media screen and (min-width: 960px) and (max-width: 1450px) {
+            .deposit {
+                width: 100%; /* Full width within this range */
+                max-width: none;
+                font-size: 14px; /* Adjust font size as needed */
+            }
+            .savingaccount {
+                width: 100%; /* Full width within this range */
+                max-width: none;
+                font-size: 14px; /* Adjust font size as needed */
+            }
+            .ul-flex li {
+                max-width: 70%; /* Adjust maximum width of li elements */
+            }
+        }
+
+          /* Style for the collapsible heading */
+  .collapsible {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+
+  /* Style for the plus and minus symbols */
+  .collapsible::after {
+    content: '+';
+    display: inline-block;
+    margin-right: 30px;
+    float: right;
+  }
+
+  /* Style for the plus and minus symbols when expanded */
+  .collapsible.active::after {
+    content: '-';
+  }
+
+  /* Style for the content that will be collapsed */
+  .content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  /* Style to show the content when heading is clicked */
+  .active + .content {
+    display: block;
+  }
+     
+</style>
+
+
+
+
+
+  <body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+      <!-- Sidebar Toggle-->
+      <button
+        class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+        id="sidebarToggle"
+        href="#!"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navbar Search-->
+      <form
+        class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+      >
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Search for..."
+            aria-label="Search for..."
+            aria-describedby="btnNavbarSearch"
+          />
+          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fas fa-user fa-fw"></i
+          ></a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <li><a class="dropdown-item" href="#!">Settings</a></li>
+            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+            <li><hr class="padding:5px" /></li>
+            <li><a class="dropdown-item" href="#!">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+                <a class="nav-link" href="../../../index.html">
+                    <div class="sb-nav-link-icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                DASHBOARD
+              </a>
+
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Company
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="layout-static.html">Profile</a>
+                    <a class="nav-link" href="layout-sidenav-light.html">Branches</a>
+                </nav>
+            </div>
+    
+
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                USER MANAGEMENT
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="layout-static.html">PERMISSIONS / ROLES</a>
+                <a class="nav-link" href="layout-sidenav-light.html">USERS</a>
+            </nav>
+          </div>
+
+
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapsecoll" aria-expanded="false" aria-controls="pagesCollapsecoll">
+            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+
+            COLL. CENTER GROUP
+        </a>
+              
+
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+
+                Members Management
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+           
+            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" >Members</a>
+                    <a class="nav-link" >Minors</a>
+                    <a class="nav-link">Share Holdings</a>
+                    <a class="nav-link" >Share Certificates</a>
+                    <a class="nav-link">Share Transfer History</a>
+                </nav>
+            </div>
+
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+              Savings/Current AC
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+         
+          <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+            <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="">Schemes</a>
+                <a class="nav-link" href="">Accounts</a>
+            </nav>
+        </div>
+
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseFD" aria-expanded="false" aria-controls="pagesCollapseFD">
+          <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+          FD/MIS ACCOUNTS
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+      </a>
+     
+      <div class="collapse" id="pagesCollapseFD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+        <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="">Schemes</a>
+            <a class="nav-link" href="">Calculators</a>
+            <a class="nav-link" href="">FD Accounts</a>
+            <a class="nav-link" href="">MIS Accounts</a>
+        </nav>
+    </div>
+
+
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseLOAN" aria-expanded="false" aria-controls="pagesCollapseLOAN">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+      LOAN AGAINST DEPOSITE
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+ 
+  <div class="collapse" id="pagesCollapseLOAN" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+    <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="">Schemes</a>
+        <a class="nav-link" href="">Calculators</a>
+        <a class="nav-link" href="">Applications</a>
+        <a class="nav-link" href="">Disbursements</a>
+        <a class="nav-link" href="">Accounts</a>
+    </nav>
+</div>
+
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapsePROP" aria-expanded="false" aria-controls="pagesCollapsePROP">
+  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  PROP./MORTAGE LOAN
+  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+
+<div class="collapse" id="pagesCollapsePROP" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+<nav class="sb-sidenav-menu-nested nav">
+  <a class="nav-link" href="">Schemes</a>
+  <a class="nav-link" href="">Calculators</a>
+  <a class="nav-link" href="">Applications</a>
+  <a class="nav-link" href="">Disbursements</a>
+  <a class="nav-link" href="">Accounts</a>
+</nav>
+</div>
+
+
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseGOLD" aria-expanded="false" aria-controls="pagesCollapseGOLD">
+  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+
+  GOLD LOAN
+  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+
+<div class="collapse" id="pagesCollapseGOLD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+  <nav class="sb-sidenav-menu-nested nav">
+    <a class="nav-link" href="">Schemes</a>
+    <a class="nav-link" href="">Calculators</a>
+    <a class="nav-link" href="">Applications</a>
+    <a class="nav-link" href="">Disbursements</a>
+    <a class="nav-link" href="">Accounts</a>
+  </nav>
+</div>
+
+
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAPPROVAL" aria-expanded="false" aria-controls="pagesCollapseAPPROVAL">
+  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+APPROVAL
+  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+
+<div class="collapse" id="pagesCollapseAPPROVAL" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+  <nav class="sb-sidenav-menu-nested nav">
+    <a class="nav-link" href="">ACCOUNTING VOUCHERS</a>
+    <a class="nav-link" href="">LOAN APPLICATION</a>
+    <a class="nav-link" href="">SAVING FD/RD ACCOUNTS</a>
+    <a class="nav-link" href="">PENDING TRANSACTIONS</a>
+    <a class="nav-link" href="">REVERSE TRANSACTIONS</a>
+    <a class="nav-link" href="">NON COMPLIANCES</a>
+    <a class="nav-link" href="">LOAN CLOSURE REQUESTS</a>
+    <a class="nav-link" href="">FD/RD CLOSURE REQUESTS</a>
+    <a class="nav-link" href="">SHARE/TRANSFER ALLOCATION</a>
+    <a class="nav-link" href="">SHARE SURRENDER</a>
+    <a class="nav-link" href="">IMPS TRANSFER APPROVAL</a>
+    <a class="nav-link" href="">WITHIN ACCOUNT TRANSFER</a>
+    <a class="nav-link" href="">PRINT REQUEST APPROVALS <button style="background-color: green;color: white;">New</button></a>
+
+  </nav>
+</div>
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseMDS" aria-expanded="false" aria-controls="pagesCollapseMDS">
+  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  MDS/RD/DDS ACCOUNTS
+  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+
+<div class="collapse" id="pagesCollapseMDS" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+<nav class="sb-sidenav-menu-nested nav">
+    <a class="nav-link" href="">Schemes</a>
+    <a class="nav-link" href="">Calculators</a>
+    <a class="nav-link" href="">MD/RDS Accounts</a>
+    <a class="nav-link" href="">DDS Accounts</a>
+</nav>
+</div>
+
+<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusiness" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  Business Loan
+  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+
+<div class="collapse" id="pagesCollapseBusiness" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+<nav class="sb-sidenav-menu-nested nav">
+    <a class="nav-link" href="">Schemes</a>
+    <a class="nav-link" href="">Calculators</a>
+    <a class="nav-link" href="">Applications</a>
+    <a class="nav-link" href="">Disbursements</a>
+    <a class="nav-link" href="">Accounts</a>
+</nav>
+</div>
+              <a class="nav-link" href="index.html">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-money-bill-wave-alt"></i>
+                </div>
+                PAYMENTS TO COLLECT
+              </a>
+
+              <a class="nav-link" href="index.html">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-money-check-alt"></i>
+                </div>
+                PAYMENTS TO RELEASE
+              </a>
+
+              <a class="nav-link" href="index.html">
+                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                PASSBOOKS
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
+                PRINT DOCUMENTS
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                ASSOCIATES/ADVISORS
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-exchange-alt"></i>
+                </div>
+                WITH-IN BANK-TRANSFER
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-credit-card"></i>
+                </div>
+                PAYMENT GATEWAY
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+                CIBIL REPORT
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+                REPORTS
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-download"></i>
+                </div>
+                DOWNLOAD REPORTS
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <a
+                class="nav-link collapsed"
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseLayouts"
+                aria-expanded="false"
+                aria-controls="collapseLayouts"
+              >
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                HR MANAGEMENT
+                <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </a>
+
+              <div
+                class="collapse"
+                id="collapseLayouts"
+                aria-labelledby="headingOne"
+                data-bs-parent="#sidenavAccordion"
+              >
+                <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="layout-static.html"
+                    >Static Navigation</a
+                  >
+                  <a class="nav-link" href="layout-sidenav-light.html"
+                  >Light Sidenav</a
+                  >
+                </nav>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div id="layoutSidenav_content">
+        <main >
+          <div class="container-fluid px-4">
+            <h3 class="mt-4">DD-DD01943<span class="h6"></h3>
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Daily Deposite > DD01943 > Credit Interest</li>
+            </ol>
+            <!-- Edit Form Start -->
+            <div class="row gap-4 ">
+              <!-- deposit start -->
+                <div class="col-md-3 deposit" style="height: 80vh;">
+                    <h3 style="padding: 10px;">CREDIT / REVERSE INTEREST</h3><hr>
+                    <p>Are you sure you want to change account info?</p>
+                    
+                    
+                    
+                    <ul class="ul-flex ">
+                       
+
+                        <label for="validationDefault04" class="form-label col-md-5">Transaction Date </label>
+                        <div class="col-md-4">
+                            <input type="date"  class="form-control" id="validationDefault05" required>
+                          </div>
+                       </ul>
+
+                      
+                     
+
+
+                       
+                       <ul class="ul-flex ">
+                       
+
+                        <label for="validationDefault04" class="form-label col-md-5">Transaction Type</label>
+                                                            <select class="form-select col-md-8" id="validationDefault04" style="width: 200px;"  required>
+                                                              <option selected disabled value="">Credit</option>
+                                                              <option></option>
+                                                              <option></option>
+                                                            </select>
+                       </ul>
+
+                       
+                   
+
+
+
+                       <ul class="ul-flex ">
+                       
+
+                        <label for="validationDefault04" class="form-label col-md-5">Interest Amount:</label>
+                        <div class="col-md-4">
+                            <input type="text"  class="form-control" id="validationDefault05" placeholder="Enter Interest Amount" required>
+                          </div>
+                       </ul>
+                       <ul class="ul-flex ">
+                       
+
+                        <label for="validationDefault04" class="form-label col-md-5">Remarks (If Any):</label>
+                        <div class="col-md-4">
+                            <textarea name="" id="" cols="30" rows="3"></textarea>
+                          </div>
+                       </ul>
+
+                      
+
+
+
+
+                       <div style="justify-content: center;" class="row p-3 gap-4">
+
+                        <button style="background-color: green;" class="col-md-5 btn btn-primary">CREDIT INTEREST</button>
+                        <button style="background-color: red;" class="col-md-3 btn btn-secondary">Cancel</button>
+                      </div>
+                    </div>
+
+                    <!-- deposit end -->
+                    <!-- saving account info start -->
+                    
+                    <div class="col-md-6 savingaccount" style="height: 60vh;">
+                      <h5 class="collapsible" style="background-color: green;color: white; padding: 7px;">Account Info</h2>
+
+                        <div class="content" style="border: 1px solid green;">
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-6"> Member</li>
+                          <li class="col-md-6" style="color: skyblue;">M01034 - Anil Madhukarrao Kulkarni</li>
+                      </ul><hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3">DD No.</li>
+                          <li class="col-md-3">DD01186</li>
+                      </ul><hr>
+                     
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3">Scheme</li>
+                          <li class="col-md-6">Pigmy deposite 8%</li>
+                      </ul><hr>
+                      
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3">Tenture</li>
+                          <li class="col-md-3">365 Days</li>
+                      </ul><hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3">Frequency</li>
+                          <li class="col-md-3">Daily</li>
+                      </ul><hr>
+                      <ul class="ul-flex">
+                        <li class="li-que col-md-3">Principal Amount</li>
+                        <li class="col-md-3">200.00</li>
+                    </ul>
+                    <ul class="ul-flex">
+                        <li class="li-que col-md-3">Amount Received</li>
+                        <li class="col-md-3">500</li>
+                    </ul><hr>
+                    <ul class="ul-flex">
+                        <li class="li-que col-md-3">Available Balance</li>
+                        <li class="col-md-3">500</li>
+                    </ul><hr>
+                    
+                     
+                  </div>
+                  </div>
+                  
+              <!-- saving account info end -->
+          
+            
+            
+            
+          </div>
+    </main>
+    
+    </div>
+    </div>
+
+    <script>
+      // JavaScript to handle the collapsing and expanding of sections
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.collapsible').forEach(function(collapsible) {
+          collapsible.addEventListener('click', function() {
+            this.classList.toggle('active');
+          });
+        });
+      });
+      </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="../../../../assets/demo/chart-area-demo.js"></script>
+        <script src="../../../../assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+       
+    <script src="../../../../js/datatables-simple-demo.js"></script>
+    <script src="../../../../js/scripts.js"></script>
+  </body>
+  </html>

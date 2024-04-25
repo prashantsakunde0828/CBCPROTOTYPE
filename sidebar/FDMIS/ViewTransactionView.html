@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+
+    <!-- fONT INTER -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+
+    <!-- iCheck -->
+
+    <!-- New Icon Card CSS Start -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- New Icon Card CSS End -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link href="../../../../css/styles.css" rel="stylesheet" />    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .collapsible-btn {
+        cursor: pointer;
+        padding: 10px;
+        background-color: lawngreen;
+    }
+    .collapsible-content {
+        display: none;
+    }
+</style>
+  
+
+  <style>
+
+    .document{
+
+      border: 1px solid rgb(7, 81, 184);
+    }
+.comment{
+  padding: 10px; 
+  background-color: rgb(7, 81, 184);
+}
+
+    .p{
+      font-size: 14px;
+      padding: 0px 0px 0px 10px;
+    }
+
+    .allocate{
+      border: 2px solid #000;
+      
+      padding: 5px;
+    }
+.btn{
+  font-size: 13px !important;
+}
+
+    .virtualaccount, .virtualupi,.memberinfo,.nomineeinfo{
+      border: 2px solid #000;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    .update-btn{
+        background-color: rgb(6, 87, 6);
+        color: white;
+    }
+      
+      .selected {
+        background-color: #002d72;
+        width: 5px;
+        color: #fff !important;
+        border-radius: 10px;
+    }
+    /* Base styles */
+    .ul-flex {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
+
+    .li-que {
+        width: 50%;
+    }
+
+    .bg-green {
+        background: red;
+        color: #fff;
+        border-radius: 10px;
+        border: 1px rgb(176, 3, 3) solid;
+        width: 60px;
+    }
+    .savingaccount{
+      
+      width: 40%; /* Adjust the width as needed */
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+           /* border: 2px solid lawngreen; */
+           
+    }
+    .withdraw {
+            width: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+            max-width: 50%; /* Adjust the width as needed */
+            font-size: 14px; /* Reduced font size */
+         
+          
+        }
+        .settings{
+          border-radius: 10px;
+          border:  2px solid #de3545;
+          padding: 10px;
+        }
+
+    /* Styles for larger screens */
+    @media screen and (max-width: 968px) {
+        .savingaccount {
+            width: 100%; /* Adjust the width as needed */
+            padding: 10px;
+            font-size: 14px; /* Reduced font size */
+           border: 2px solid lawngreen;
+           height: auto;
+        }
+
+        .withdraw {
+            width: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+            max-width: 50%; /* Adjust the width as needed */
+            font-size: 14px; /* Reduced font size */
+            height: auto;
+          
+        }
+    }
+
+    /* Styles for smaller screens */
+    @media screen and (max-width: 767px) {
+     .ul-flex{
+     flex-direction: column;
+     }
+
+        .savingaccount { width: 100%; border:2px solid lawngreen ; padding: 10px; white-space: wrap; 
+                max-width: none;
+                font-size: 14px; 
+                height: auto;
+        }
+        .withdraw {
+            width: 100%; 
+            max-width: none;
+            font-size: 12px; /* Reduced font size for smaller screens */
+            height: auto; /* Auto height for smaller screens */
+          
+        }
+    }
+
+    @media screen and (min-width: 960px) and (max-width: 1450px) {
+            .withdraw {
+                width: 100%; /* Full width within this range */
+                max-width: none;
+                font-size: 14px; /* Adjust font size as needed */
+            }
+            .ul-flex li {
+                max-width: 70%; /* Adjust maximum width of li elements */
+            }
+        }
+     
+</style>
+
+
+
+
+
+  <body  class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+      <!-- Sidebar Toggle-->
+      <button
+        class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+        id="sidebarToggle"
+        href="#!"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navbar Search-->
+      <form
+        class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+      >
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Search for..."
+            aria-label="Search for..."
+            aria-describedby="btnNavbarSearch"
+          />
+          <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+      <!-- Navbar-->
+      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fas fa-user fa-fw"></i
+          ></a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <li><a class="dropdown-item" href="#!">Settings</a></li>
+            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+            <li><hr class="padding:5px" />class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#!">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div  id="layoutSidenav">
+      <div  id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+              <div class="nav">
+                <a class="nav-link" href="../../../index.html">
+                    <div class="sb-nav-link-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                  </div>
+                  DASHBOARD
+                </a>
+  
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                  Company
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="layout-static.html">Profile</a>
+                      <a class="nav-link" href="layout-sidenav-light.html">Branches</a>
+                  </nav>
+              </div>
+      
+  
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                  USER MANAGEMENT
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="layout-static.html">PERMISSIONS / ROLES</a>
+                  <a class="nav-link" href="layout-sidenav-light.html">USERS</a>
+              </nav>
+            </div>
+  
+  
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapsecoll" aria-expanded="false" aria-controls="pagesCollapsecoll">
+              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  
+              COLL. CENTER GROUP
+          </a>
+                
+  
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  
+                  Members Management
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+             
+              <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" >Members</a>
+                      <a class="nav-link" >Minors</a>
+                      <a class="nav-link">Share Holdings</a>
+                      <a class="nav-link" >Share Certificates</a>
+                      <a class="nav-link">Share Transfer History</a>
+                  </nav>
+              </div>
+  
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                Savings/Current AC
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+           
+            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+              <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="">Schemes</a>
+                  <a class="nav-link" href="">Accounts</a>
+              </nav>
+          </div>
+  
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseFD" aria-expanded="false" aria-controls="pagesCollapseFD">
+            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+            FD/MIS ACCOUNTS
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>
+       
+        <div class="collapse" id="pagesCollapseFD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+          <nav class="sb-sidenav-menu-nested nav">
+              <a class="nav-link" href="">Schemes</a>
+              <a class="nav-link" href="">Calculators</a>
+              <a class="nav-link" href="">FD Accounts</a>
+              <a class="nav-link" href="">MIS Accounts</a>
+          </nav>
+      </div>
+  
+  
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseLOAN" aria-expanded="false" aria-controls="pagesCollapseLOAN">
+        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+        LOAN AGAINST DEPOSITE
+        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+   
+    <div class="collapse" id="pagesCollapseLOAN" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+      <nav class="sb-sidenav-menu-nested nav">
+          <a class="nav-link" href="">Schemes</a>
+          <a class="nav-link" href="">Calculators</a>
+          <a class="nav-link" href="">Applications</a>
+          <a class="nav-link" href="">Disbursements</a>
+          <a class="nav-link" href="">Accounts</a>
+      </nav>
+  </div>
+  
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapsePROP" aria-expanded="false" aria-controls="pagesCollapsePROP">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    PROP./MORTAGE LOAN
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  
+  <div class="collapse" id="pagesCollapsePROP" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+  <nav class="sb-sidenav-menu-nested nav">
+    <a class="nav-link" href="">Schemes</a>
+    <a class="nav-link" href="">Calculators</a>
+    <a class="nav-link" href="">Applications</a>
+    <a class="nav-link" href="">Disbursements</a>
+    <a class="nav-link" href="">Accounts</a>
+  </nav>
+  </div>
+  
+  
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseGOLD" aria-expanded="false" aria-controls="pagesCollapseGOLD">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  
+    GOLD LOAN
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  
+  <div class="collapse" id="pagesCollapseGOLD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="">Schemes</a>
+      <a class="nav-link" href="">Calculators</a>
+      <a class="nav-link" href="">Applications</a>
+      <a class="nav-link" href="">Disbursements</a>
+      <a class="nav-link" href="">Accounts</a>
+    </nav>
+  </div>
+  
+  
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAPPROVAL" aria-expanded="false" aria-controls="pagesCollapseAPPROVAL">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+  APPROVAL
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  
+  <div class="collapse" id="pagesCollapseAPPROVAL" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="">ACCOUNTING VOUCHERS</a>
+      <a class="nav-link" href="">LOAN APPLICATION</a>
+      <a class="nav-link" href="">SAVING FD/RD ACCOUNTS</a>
+      <a class="nav-link" href="">PENDING TRANSACTIONS</a>
+      <a class="nav-link" href="">REVERSE TRANSACTIONS</a>
+      <a class="nav-link" href="">NON COMPLIANCES</a>
+      <a class="nav-link" href="">LOAN CLOSURE REQUESTS</a>
+      <a class="nav-link" href="">FD/RD CLOSURE REQUESTS</a>
+      <a class="nav-link" href="">SHARE/TRANSFER ALLOCATION</a>
+      <a class="nav-link" href="">SHARE SURRENDER</a>
+      <a class="nav-link" href="">IMPS TRANSFER APPROVAL</a>
+      <a class="nav-link" href="">WITHIN ACCOUNT TRANSFER</a>
+      <a class="nav-link" href="">PRINT REQUEST APPROVALS <button style="background-color: green;color: white;">New</button></a>
+  
+    </nav>
+  </div>
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseMDS" aria-expanded="false" aria-controls="pagesCollapseMDS">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    MDS/RD/DDS ACCOUNTS
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  
+  <div class="collapse" id="pagesCollapseMDS" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+  <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="">Schemes</a>
+      <a class="nav-link" href="">Calculators</a>
+      <a class="nav-link" href="">MD/RDS Accounts</a>
+      <a class="nav-link" href="">DDS Accounts</a>
+  </nav>
+  </div>
+  
+  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusiness" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    Business Loan
+    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+  </a>
+  
+  <div class="collapse" id="pagesCollapseBusiness" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+  <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="">Schemes</a>
+      <a class="nav-link" href="">Calculators</a>
+      <a class="nav-link" href="">Applications</a>
+      <a class="nav-link" href="">Disbursements</a>
+      <a class="nav-link" href="">Accounts</a>
+  </nav>
+  </div>
+                <a class="nav-link" href="index.html">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-money-bill-wave-alt"></i>
+                  </div>
+                  PAYMENTS TO COLLECT
+                </a>
+  
+                <a class="nav-link" href="index.html">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-money-check-alt"></i>
+                  </div>
+                  PAYMENTS TO RELEASE
+                </a>
+  
+                <a class="nav-link" href="index.html">
+                  <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                  PASSBOOKS
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
+                  PRINT DOCUMENTS
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                  ASSOCIATES/ADVISORS
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                  </div>
+                  WITH-IN BANK-TRANSFER
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-credit-card"></i>
+                  </div>
+                  PAYMENT GATEWAY
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-file-alt"></i>
+                  </div>
+                  CIBIL REPORT
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                  REPORTS
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-download"></i>
+                  </div>
+                  DOWNLOAD REPORTS
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseLayouts"
+                  aria-expanded="false"
+                  aria-controls="collapseLayouts"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                  HR MANAGEMENT
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+  
+                <div
+                  class="collapse"
+                  id="collapseLayouts"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#sidenavAccordion"
+                >
+                  <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="layout-static.html"
+                      >Static Navigation</a
+                    >
+                    <a class="nav-link" href="layout-sidenav-light.html"
+                    >Light Sidenav</a
+                    >
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </nav>
+      </div>
+      <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+              <h3 class="mt-4">Fixed Deposit - FD03189</h3>
+              <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Fixed Deposit > FD03189</li>
+              </ol>
+              <!-- Edit Form Start -->
+
+              <button type="button" class="btn btn-info" style="font-size: 10px;background-color: green;color: white;">ALLOCATE SHARES</button>
+             <a href="#"> <button type="button" class="btn btn-primary m-2" style="font-size: 10px;background-color: orange;color: white;">ADD SHARE AMOUNT</button></a>
+   <a href="#"> <button type="button" style="background-color: orange;color: white;" class="btn btn-secondary m-2">ADD MEMBERSHIP CHARGES</button></a>
+  <a href="#"><button style="background-color: skyblue;color: white;" type="button" class="btn btn-success m-2">VIEW TRANSACTIONS</button></a>
+  
+  
+  <!-- <div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-danger m-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Debit Other Charges
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Other Charges List </a></li>
+      <li><a class="dropdown-item" href="../SavingCurrentAccount/DebitOtherCharges/debitothercharges.html">Debit Other Charges</a></li>
+      <li><a onclick="showAlert()" class="dropdown-item" href="#">Clear Dues</a></li>
+    </ul>
+  </div> -->
+  
+  <div class="btn-group" role="group">
+    <button style="background-color: white;" type="button" class="btn btn-warning m-2" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-print"></i>
+    DOWNLOAD
+    </button>
+   
+  </div>
+  
+  
+  <button type="button" style="background-color: orange;color: white;" class="btn btn-info m-2">
+      + UPLOAD 15G/15H</button>
+      <button type="button" style="background-color: red;color: white;" class="btn btn-success m-2"></i>
+      REMOVE MEMBERS</button>
+      <button type="button" class="btn btn-primary m-2"></i>
+        <i class="fas fa-print"></i> APPLICATION FORM</button>
+  
+     
+  
+      <div class="row gap-4 pt-4">
+          <!-- withdraw start -->
+            <div style="font-weight: bold;" class="col-md-6 withdraw">
+                
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3"> Create On</li>
+                 <li>Admin App</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Create By</li>
+                 <li class="col-md-3">-</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Status</li>
+                 <li class="col-md-3">Active</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Branch</li>
+                 <li class="col-md-3">Pune</li>
+                </ul>
+                <ul class="ul-flex ">
+                 <li class="li-que col-md-3">Associate/Adviser/Staff </li>
+                 <li class="col-md-3">Head Office</li>
+                </ul>
+                <ul class="ul-flex ">
+                 <li class="li-que col-md-3">Enrollment Date </li>
+                 <li class="col-md-3">2 Jan 2023</li>
+                </ul>
+                <ul class="ul-flex ">
+                 <li class="li-que col-md-3">Name</li>
+                 <li class="col-md-3">Mr.Vijay Kalu Chorage</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">DOB</li>
+                 <li class="col-md-3">26 Dec 1993</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Age</li>
+                 <li class="col-md-3">30 years</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Senior Citizen</li>
+                 <li class="col-md-3"><button class="bg-danger">No</button></li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Gender</li>
+                 <li class="col-md-3">Male</li>
+                </ul>
+                <ul class="ul-flex">
+                 <li class="li-que col-md-3">Folio No</li>
+                 <li class="col-md-3">6056</li>
+                </ul>
+                <ul class="ul-flex">
+                    <li class="li-que col-md-3">Father Name</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Mother Name</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Marital Status</li>
+                    <li class="col-md-3">MARRIED</li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Qualification</li>
+                    <li class="col-md-3">12/04/2025</li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Husband/Wife Name</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Husband/Wife DOB</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Occupation</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Monthly Income</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Collection Time</li>
+                    <li class="col-md-3"></li>
+                   </ul>
+                   <ul class="ul-flex">
+                    <li class="li-que col-md-3">Form 15G/15H</li>
+                    <li class="col-md-3"><button class="bg-danger">No</button></li>
+                   </ul>
+               
+              
+                <!-- <div class="row p-3 gap-4">
+  
+                  <button class="col-md-3 btn btn-primary">Deposit</button>
+                  <button class="col-md-3 btn btn-secondary">Cancel</button>
+                </div> -->
+  
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:red;color:white;">MEMBER KYC INFO <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                            <ul class="ul-flex">
+                             <li class="li-que col-md-3">Aadhaar No</li>
+                             <li class="col-md-3">xxxx xxxx97</li>
+                            </ul><hr>
+                            <ul class="ul-flex">
+                             <li class="li-que col-md-3">voter Id No</li>
+                             <li class="col-md-3"></li>
+                            </ul><hr>
+                            <ul class="ul-flex">
+                             <li class="li-que col-md-3">Pan No.</li>
+                             <li class="col-md-3">BIAPC6434K</li>
+                            </ul><hr>
+                            <ul class="ul-flex">
+                             <li class="li-que col-md-3">Ration Card No</li>
+                             <li class="col-md-3"></li>
+                            </ul><hr>
+                            <ul class="ul-flex ">
+                             <li class="li-que col-md-3">Meter No</li>
+                             <li class="col-md-3"></li>
+                            </ul><hr>
+                            <ul class="ul-flex ">
+                             <li class="li-que col-md-3">CI No</li>
+                             <li class="col-md-3"></li>
+                            </ul><hr>
+                            <ul class="ul-flex ">
+                             <li class="li-que col-md-3">CI Relation</li>
+                             <li class="col-md-3"></li>
+                            </ul><hr>
+                            <ul class="ul-flex ">
+                                <li class="li-que col-md-3">DL No</li>
+                                <li class="col-md-3"></li>
+                               </ul>
+                               
+                           
+        
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+  
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:blue;color:white;">NOMINEE INFO <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                     
+                      
+                        <ul class="ul-flex">
+                            <li class="li-que col-md-3">Name</li>
+                            <li class="col-md-3">Mohit Ashok Chougule</li>
+                           </ul><hr>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3">DOB</li>
+                            <li class="col-md-3"></li>
+                           </ul><hr>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3">Relation </li>
+                            <li class="col-md-3">Spouse</li>
+                           </ul><hr>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3">Ration Card No</li>
+                            <li class="col-md-3"></li>
+                           </ul><hr>
+                           <ul class="ul-flex ">
+                            <li class="li-que col-md-3">Mobile No</li>
+                            <li class="col-md-3">9776677876</li>
+                           </ul><hr>
+                           <ul class="ul-flex ">
+                            <li class="li-que col-md-3">Aadhar No</li>
+                            <li class="col-md-3"></li>
+                           </ul><hr>
+                           <ul class="ul-flex ">
+                            <li class="li-que col-md-3">Pan No</li>
+                            <li class="col-md-3"></li>
+                           </ul><hr>
+                           <ul class="ul-flex ">
+                               <li class="li-que col-md-3">Address</li>
+                               <li class="col-md-3"></li>
+                              </ul>
+                              
+                          
+                              <ul class="ul-flex ">
+                                <li class="li-que col-md-3">Relation Card No</li>
+                                <li class="col-md-3"></li>
+                               </ul>
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+  
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:orange;">DOCUMENTS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      <ul class="ul-flex">
+                        <li class="li-que col-md-3"><h6>Photo</h6>  </li>
+                        <li class=" col-md-6">View</li>
+                       </ul>
+                       <ul class="ul-flex">
+                        <li class="li-que col-md-3"><h6>ID Proof</h6></li>
+                        <li class="col-md-3">View</li>
+                       </ul>
+                       <ul class="ul-flex">
+                        <li class="li-que col-md-3"><h6>Address Proof</h6></li>
+                        <li class="col-md-3">View</li>
+                       </ul>
+                       <ul class="ul-flex">
+                        <li class="li-que col-md-3"><h6>PAN No</h6></li>
+                        <li class="col-md-3">View</li>
+                       </ul>
+                       <ul class="ul-flex ">
+                        <li class="li-que col-md-3"><h6>Signature</h6> </li>
+                        <li class="col-md-3">View</li>
+                       </ul>
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:red;color:white">JOINT ACCOUNTS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                      <table>
+                        <tbody>
+                            <tr>
+                                <th style="padding-right: 20px;">ACCOUNT TYPE</th>
+                                <th style="padding-right: 20px;">ACCOUNT NO</th>
+                                <th style="padding-right: 20px;">OPEN DATE</th>
+                                <th style="padding-right: 20px;">STATUS</th>
+                            </tr>
+                        </tbody>
+                      </table>
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:skyblue;color:white;">CO-APPLICANT LOANS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                      <table>
+                        <tbody>
+                            <tr>
+                                <th style="padding-right: 20px;">ACCOUNT TYPE</th>
+                                <th style="padding-right: 20px;">ACCOUNT NO</th>
+                                <th style="padding-right: 20px;">OPEN DATE</th>
+                                <th style="padding-right: 20px;">STATUS</th>
+                            </tr>
+                        </tbody>
+                      </table>
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:orange;color:white;">MY GUARTNOR SHIP<i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                      <table>
+                        <tbody>
+                            <tr>
+                                <th style="padding-right: 20px;">ACCOUNT TYPE</th>
+                                <th style="padding-right: 20px;">ACCOUNT NO</th>
+                                <th style="padding-right: 20px;">OPEN DATE</th>
+                                <th style="padding-right: 20px;">STATUS</th>
+                            </tr>
+                        </tbody>
+                      </table>
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:blue;color:white;">COMMENTS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                     <p>No comments found</p>
+                    
+                     <div style="display: flex;justify-content: center;">
+                        <button style="background-color: green;color: white;">ADD COMMENTS</button>
+                     </div>
+                       
+                    </ul>
+                    <hr>
+                </div>
+              
+                
+                </div>
+  
+                
+  
+                <!-- withdraw end -->
+                <!-- saving account info start -->
+                <div class="col-md-6 savingaccount">
+
+                    <div style="display: flex;gap: 20px;" class="mb-4 " >
+                       <div class="col-md-4" style="display: flex;box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+                        <div style="background-color: green;"><i class="fas fa-dollar-sign" style="width: 100%;height: 100%;"></i></div>
+                        <div class="col-md-8 p-2">Total Deposits <br>618.18</div>
+
+                       </div>
+                       <div class="col-md-4" style="display: flex;box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+                        <div style="background-color: rgb(14, 106, 176);width: 100%;"><i class="fas fa-dollar-sign" style="width: 100%;height: 100%;"></i></div>
+                        <div class="col-md-8 p-2">Loan Standing <br>0.0</div>
+
+                       </div>
+                       
+                      
+                        
+                        
+    
+                    </div>
+
+                    <div class="mb-4 memberinfo">
+                        <div style="display: flex;justify-content: space-between;">
+                            <p>Current KYC Status</p>
+                            <button style="background-color: orange;color: white;">PENDING</button>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center p-2"> <!-- Added align-items-center to vertically center elements -->
+                            <label class="col-md-3 col-form-label ">KYC STATUS :</label> <!-- Adjusted grid classes -->
+                            <div class="col-md-9"> <!-- Adjusted grid classes -->
+                                <div class="input-group mb-2">
+                                    <select class="form-select" id="inputGroupSelect02">
+                                        <option selected>Pending</option>
+                                      
+                                    </select>
+                                    <label class="input-group-text update-btn" for="inputGroupSelect02">Update</label>
+                                </div>
+                            </div>
+                        </div>
+                     
+                     
+                      
+    
+                        
+                        
+    
+                    </div>
+  
+                  <div class="mb-4 settings" >
+                      <h6>SETTINGS</h6>
+                      <hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3"> Internet Banking / Mob App Enabled</li>
+                         <li class="col-md-3"><div class="form-check form-switch" style="font-size: 20px;">
+                              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                              <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div></li>
+                      </ul>
+                      <hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3"> Money Transfer</li>
+                          <li class="col-md-3"><div class="form-check form-switch" style="font-size: 20px;">
+                              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                              <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div></li>
+                      </ul>
+                      <hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3"> Account Locked</li>
+                          <li class="col-md-3"><div class="form-check form-switch" style="font-size: 20px;">
+                              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                              <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div></li>
+                      </ul>
+                      <hr>
+                      <ul class="ul-flex">
+                          <li class="li-que col-md-3"> SMS <i class="fas fa-info-circle" style="cursor: pointer;"></i></li>
+                         
+                              <li class="col-md-3"><div class="form-check form-switch" style="font-size: 20px;">
+                                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                  <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                </div></li>
+                      </ul>
+  
+  
+                  </div>
+
+                  <div class="mb-4 memberinfo">
+                    <div style="display: flex;justify-content: space-between;">
+                        <p>INTERNET BANKING USERNAME</p>
+                    </div>
+                    <hr>
+                    <div style="display: flex;justify-content: space-evenly;" class=" align-items-center p-2"> <!-- Added align-items-center to vertically center elements -->
+                      <p>USERNAME</p>     
+                      <p>m06056</p>                  
+                      <p><i class="fas fa-sign-out"></i></p>
+                    </div>
+                 
+                 
+                  
+
+                    
+                    
+
+                </div>
+
+                <div class="mb-4 memberinfo">
+                    <div style="display: flex;justify-content: space-between; background-color: green;align-items: center;">
+                        <p style="color: white;display: flex;align-items: center;">MOBILE & EMAIL DETAILS</p>
+                    </div>
+                    <hr>
+                    <div style="display: flex;justify-content: space-evenly;" class=" align-items-center p-2"> <!-- Added align-items-center to vertically center elements -->
+                      <p style="font-weight: bold;">Mobile Number</p>     
+                      <p>xxxxxxxx97</p>                  
+                     
+                    </div>
+                    <div style="display: flex;justify-content: space-evenly;" class=" align-items-center p-2"> <!-- Added align-items-center to vertically center elements -->
+                        <p style="font-weight: bold;">Email</p>     
+                        <p>-</p>                  
+                       
+                      </div>
+                 
+                 
+                  
+
+                    
+                    
+
+                </div>
+
+                <div class="mb-4 memberinfo">
+                    <div style="display: flex;justify-content: space-between; ">
+                        <p style="font-weight: bold;">SHARE HOLDING DETAILS</p>
+                    </div>
+                    <hr>
+                    <div style="display: flex;justify-content: space-evenly;" class=" align-items-center p-2"> <!-- Added align-items-center to vertically center elements -->
+                      <p style="font-weight: bold;">No Of Shares</p>     
+                      <p>0</p>                  
+                     
+                    </div>
+              
+
+                </div>
+  
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:skyblue;color:white">ADDRESS AND CONTACT INFO<i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                      
+                       <h6>Correspondence Address</h6>
+
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6>Address:</h6> </li>
+                                <li class="col-md-6">At post- Anewadi,Tal- Jaoli, Dist- Satara At post- Anewadi Tal-Jaoli,Dist-Satara satara Maharashtra 415020</li>
+                               </ul>
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6>para/Ward/Panchyat/Area</h6> </li>
+                                <li class="col-md-3">Anewadi</li>
+                               </ul>
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6> Landmark</h6> </li><hr>
+                               </ul><hr>
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6>Permant Address</h6> </li>
+                                <li class="col-md-3">At post.- Anewadi, Tal-Jaoli, Dist-Stara</li>
+                               </ul>
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6>City/District</h6> </li>
+                               </ul>
+                               <ul class="ul-flex ">
+                                <li class="li-que col-md-3"><h6>State</h6> </li>
+                                <li class="col-md-3">Maharashtra</li>
+                               </ul>
+                 
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:orange;color:white">BANK DETAILS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+
+                        <ul class="ul-flex">
+                            <li class="li-que col-md-3"><h6>Ban Name</h6>  </li>
+                           </ul>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3"><h6>IFSC Code</h6></li>
+                           </ul>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3"><h6>Account Type</h6></li>
+                           </ul>
+                           <ul class="ul-flex">
+                            <li class="li-que col-md-3"><h6>Account No</h6></li>
+                           </ul>
+                           
+                           
+                      
+                    
+                       
+                       
+                    </ul>
+                    <hr>
+                </div>
+                <div class="mb-4 p-0 nomineeinfo">
+                    <h6 class="collapsible-btn"style="background-color:green;color:white">MEMBER ACCOUNTS <i class="fas fa-plus" style="float:right;"></i></h6>
+                    <ul class="collapsible-content">
+                      
+                   
+                        
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Active Account</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Close Account</a>
+                            </li>
+                            
+                          </ul>
+                          <div class="tab-content pt-5" id="tab-content">
+                            <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">  <table>
+                                <tbody>
+                                    <tr>
+                                        <th style="padding-right: 5px;">ACCOUNT TYPE</th>
+                                        <th style="padding-right: 0px;">ACCOUNT NO</th>
+                                        <th style="padding-right: 5px;">OPEN DATE</th>
+                                        <th style="padding-right: 5px;">STATUS</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 5px;">Saving</td>
+                                        <td style="padding-right: 5px;">S05405</td>
+                                        <td style="padding-right: 5px;">02/01/2023</td>
+                                        <td style="padding-right: 5px;">Active</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-right: 5px;">DD</td>
+                                        <td style="padding-right: 5px;">DD00737</td>
+                                        <td style="padding-right: 5px;">02/01/2023</td>
+                                        <td style="padding-right: 0px;">For active closure</td>
+                                    </tr>
+                                </tbody>
+                              </table></div>
+                            <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1"></div>
+                          </div>
+                    </ul>
+                    <hr>
+                </div>
+  
+  
+                 
+  
+  
+                  <!-- <div class="mb-4 virtualaccount" >
+                      <h6>VIRTUAL ACCOUNT DETAILS </h6>
+                      <hr>
+                      <div class="" table-responsive table-scroll data-mdb-perfect-scrollbar="true" style="position: relative; overflow: scroll;">
+                           <table id="myTable" class="table table-striped mb-0">
+                          <thead style="background-color: rgb(15, 15, 87)">
+  
+                              <tr >
+                                  <th class="theading" >A/C No.</th>
+                                  <th class="theading" >IFSC </th>
+                                  <th class="theading" >MODE</th>
+                                 
+                                  <th class="theading">ACTIVE</th>
+                                  <th class="theading">SHOW/PRINT</th>
+                                 
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                            
+                                  <td>AFMIlS1234</td>
+                                  <td>ICICI00012</td>
+                                  <td></td>
+                                  <td><button class="bg-green">Yes</button></td>
+                                  <td><button class="bg-green">Yes</button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>          
+                  </div> -->
+  
+                  
+                  <!-- <div class="mb-4 virtualupi" >
+                      <h6>VIRTUAL UPI INFO </h6>
+                      <hr>
+                      <div class=""table-responsive table-scroll data-mdb-perfect-scrollbar="true" style="position: relative;overflow: scroll;">
+                           <table id="myTable" class="table table-striped mb-0">
+                          <thead style="background-color: rgb(15, 15, 87)">
+  
+                              <tr >
+                                  <th class="theading" >UPI ID</th>
+                                  <th class="theading">ACTIVE</th>
+                                  <th class="theading">SHOW/PRINT</th>
+                                 
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                            
+                                  <td>aared.S98754@icici</td>
+                                  <td><button class="bg-green">Yes</button></td>
+                                  <td><button class="bg-green">Yes</button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>          
+                  </div>
+   -->
+                  
+                  
+                
+              
+               
+            
+              
+  
+  
+           
+                  
+                  <!-- saving account info end -->
+                  
+                  
+                  
+                  
+              </div>
+              
+              
+          </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div
+            class="d-flex align-items-center justify-content-between small"
+            >
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    </div>
+
+    
+    <script src="js/datatables-simple-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleBtns = document.querySelectorAll('.collapsible-btn');
+    
+            collapsibleBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        this.innerHTML = this.textContent.replace('+', '-') + ' <i class="fas fa-minus" style="float:right;"></i>';
+                    } else {
+                        content.style.display = 'none';
+                        this.innerHTML = this.textContent.replace('-', '+') + ' <i class="fas fa-plus" style="float:right;"></i>';
+                    }
+                });
+            });
+        });
+    </script>
+      
+
+      
+  </body>
+  </html>

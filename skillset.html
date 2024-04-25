@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Skillset Form</title>
+<style>
+  
+  .skillset-item {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  .delete-button {
+    cursor: pointer;
+    color: red;
+    margin-left: 5px;
+  }
+  #skillInput {
+    width: calc(100% - 110px); /* Adjust the width according to your preference */
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: blue;
+    color: #fff;
+    display: inline-block;
+    margin-right: 5px;
+    
+  }
+  #addSkillsButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<form id="skillsetForm">
+  <label for="skillInput">Skills (separated by commas):</label>
+  <input type="text" id="skillInput">
+  <button type="button" id="addSkillsButton" onclick="addSkills()">Add Skills</button>
+  
+  <div id="skillsetContainer">
+    <!-- Skillsets will be added here -->
+  </div>
+  
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+function addSkills() {
+  const skillInput = document.getElementById("skillInput");
+
+  const skillValue = skillInput.value.trim();
+  
+  if (skillValue === "") {
+    alert("Please enter at least one skill");
+    return;
+  }
+  
+  const skillsArray = skillValue.split(",").map(skill => skill.trim());
+  
+  const skillsetContainer = document.getElementById("skillsetContainer");
+  
+  // Clear the previous skillset items
+  skillsetContainer.innerHTML = "";
+ 
+  // Add each skill to the skillset container
+  skillsArray.forEach(skill => {
+    // Create a new skillset item
+    const skillsetItem = document.createElement("div");
+    skillsetItem.classList.add("skillset-item");
+
+    // Create text node with skill value
+    const skillText = document.createTextNode(skill);
+    
+    // Append text node to skillset item
+    skillsetItem.appendChild(skillText);
+    
+    // Create delete button
+    const deleteButton = document.createElement("span");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerHTML = "&#10006;";
+    deleteButton.onclick = function() {
+      skillsetItem.remove();
+      updateSkillInput();
+    };
+    
+    // Append delete button to skillset item
+    skillsetItem.appendChild(deleteButton);
+    
+    // Append skillset item to container
+    skillsetContainer.appendChild(skillsetItem);
+  });
+  
+  // Update the input box value
+  updateSkillInput();
+}
+
+function updateSkillInput() {
+  const skillsetContainer = document.getElementById("skillsetContainer");
+  const skillsetItems = skillsetContainer.querySelectorAll(".skillset-item");
+  const skillValues = Array.from(skillsetItems).map(item => item.textContent);
+  document.getElementById("skillInput").value = skillValues.join(", ");
+}
+
+document.getElementById("skillsetForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+  
+  // Here you can handle form submission, for example, sending data to the server
+  // or performing any other action.
+  
+  // For demonstration purposes, let's just log the skillset items
+  const skillsetItems = document.querySelectorAll(".skillset-item");
+  const skillsetValues = Array.from(skillsetItems).map(item => item.textContent);
+  console.log("Skillset values:", skillsetValues);
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+
+
+ <!-- fONT INTER -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- iCheck -->
+
+        <!-- New Icon Card CSS Start -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+
+         <!-- New Icon Card CSS End -->
+
+
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="./css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        
+    </head>
+
+    <style>
+
+
+
+.sales-card .card-body{
+  height: 110px;
+  position: relative;
+  display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: space-between;
+   
+}
+
+      .dashboard-icon-circle{
+        width: 2rem;height: 2rem;  margin-left: 10px; margin-top: 10px; position: relative;
+        position: absolute;
+       left: 10px;
+        bottom: 15px;
+      }
+
+   .dashboard-icon{
+
+    text-align: center;
+        top: 8px;
+        position: absolute;
+        left: 9px;
+}
+    </style>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Core Banking System</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+          <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+              <div class="sb-sidenav-menu">
+                <div class="nav">
+                  <a class="nav-link" href="index.html">
+                    <div class="sb-nav-link-icon">
+                      <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    DASHBOARD
+                  </a>
+    
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Company
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="./sidebar/Company/Profile/Profile.html">Profile</a>
+                        <a class="nav-link" href="./sidebar/Company/branches/branches.html">Branches</a>
+                    </nav>
+                </div>
+        
+    
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    USER MANAGEMENT
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                  <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="./sidebar/UserManagement/PermissionRoles/PermissionRoles.html">PERMISSIONS / ROLES</a>
+                    <a class="nav-link" href="./sidebar/UserManagement/Users/Users.html">USERS</a>
+                </nav>
+              </div>
+    
+    
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth" >
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    
+                    COLL. CENTER/GROUPS
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+               
+                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="./sidebar/CollCenterGroup/Collection Center/CollectionCenter.html">COLLECTION CENTERS</a>
+                        <a class="nav-link" href="./sidebar/CollCenterGroup/Groups/Groups.html">GROUPS</a>
+                       
+                    </nav>
+                </div>
+                  
+    
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAutha" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    
+                    Members Management
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+               
+                <div class="collapse" id="pagesCollapseAutha" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="./sidebar/MemberManagement/membermain.html">Members</a>
+                        <a class="nav-link" href="./sidebar/MemberManagement/Minor.html">Minors</a>
+                        <a class="nav-link" href="./sidebar/MemberManagement/shareHolding.html">Share Holdings</a>
+                        <a class="nav-link" href="./sidebar/MemberManagement/shareCertificate.html">Share Certificates</a>
+                        <a class="nav-link" href="./sidebar/MemberManagement/shareTransferHistory.html">Share Transfer History</a>
+                    </nav>
+                </div>
+    
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                  <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                  Savings/Current AC
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              </a>
+             
+              <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="./sidebar/SavingCurrentAccount/Schemes/Currentscheme.html">Schemes</a>
+                    <a class="nav-link" href="./sidebar/SavingCurrentAccount/account.html">Accounts</a>
+                </nav>
+            </div>
+    
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseFD" aria-expanded="false" aria-controls="pagesCollapseFD">
+              <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+              FD/MIS ACCOUNTS
+              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+         
+          <div class="collapse" id="pagesCollapseFD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+            <nav class="sb-sidenav-menu-nested nav">
+                <a class="nav-link" href="./sidebar/FDMIS/fdschemes.html">Schemes</a>
+                <a class="nav-link" href="./sidebar/FDMIS/calculator/fdcalculator.html">Calculators</a>
+                <a class="nav-link" href="./sidebar/FDMIS/Fixeddeposite.html">FD Accounts</a>
+                <a class="nav-link" href="">MIS Accounts</a>
+            </nav>
+        </div>
+
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseMDS" aria-expanded="false" aria-controls="pagesCollapseMDS">
+          <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+          MDS/RD/DDS ACCOUNTS
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>
+        
+        <div class="collapse" id="pagesCollapseMDS" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+        <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="./sidebar/MSDRDDDS accounts/Schemes/DDSchemes.html">Schemes</a>
+            <a class="nav-link" href="./sidebar/MSDRDDDS accounts/Calculator/RdDDCalculator.html">Calculators</a>
+            <a class="nav-link" href="./sidebar/MSDRDDDS accounts/MSDRDAccount/msdrddd.html">MD/RDS Accounts</a>
+            <a class="nav-link" href="./sidebar/MSDRDDDS accounts/DD/ddsacount.html">DDS Accounts</a>
+        </nav>
+        </div>
+    
+    
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseLOAN" aria-expanded="false" aria-controls="pagesCollapseLOAN">
+          <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+          LOAN AGAINST DEPOSITE
+          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+      </a>
+     
+      <div class="collapse" id="pagesCollapseLOAN" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+        <nav class="sb-sidenav-menu-nested nav">
+            <a class="nav-link" href="">Schemes</a>
+            <a class="nav-link" href="">Calculators</a>
+            <a class="nav-link" href="">Applications</a>
+            <a class="nav-link" href="">Disbursements</a>
+            <a class="nav-link" href="">Accounts</a>
+        </nav>
+    </div>
+    
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapsePROP" aria-expanded="false" aria-controls="pagesCollapsePROP">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+      PROP/MORTAGE LOAN
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    
+    <div class="collapse" id="pagesCollapsePROP" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+    <nav class="sb-sidenav-menu-nested nav">
+      <a class="nav-link" href="">Schemes</a>
+      <a class="nav-link" href="">Calculators</a>
+      <a class="nav-link" href="">Applications</a>
+      <a class="nav-link" href="">Disbursements</a>
+      <a class="nav-link" href="">Accounts</a>
+    </nav>
+    </div>
+    
+    
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseGOLD" aria-expanded="false" aria-controls="pagesCollapseGOLD">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    
+      GOLD LOAN
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    
+    <div class="collapse" id="pagesCollapseGOLD" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="./sidebar/GoldLoan/shemes/shemes.html">Schemes</a>
+        <a class="nav-link" href="./sidebar/GoldLoan/Calculator/goldloanCalculator.html">Calculators</a>
+        <a class="nav-link" href="./sidebar/GoldLoan/Application/goldloanApplication.html">Applications</a>
+        <a class="nav-link" href="./sidebar/GoldLoan/Disbursment/goldloandisb.html">Disbursements</a>
+        <a class="nav-link" href="./sidebar/GoldLoan/Account/account.html">Accounts</a>
+      </nav>
+    </div>
+    
+    
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAPPROVAL" aria-expanded="false" aria-controls="pagesCollapseAPPROVAL">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+    APPROVAL
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    
+    <div class="collapse" id="pagesCollapseAPPROVAL" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+      <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="./sidebar/Approvals/AccountingVoucher/accountingVouchers.html">ACCOUNTING VOUCHERS</a>
+        <a class="nav-link" href="./sidebar/Approvals/LoanApplication/loanApplication.html">LOAN APPLICATION</a>
+        <a class="nav-link" href="./sidebar/Approvals/SavingFDRDaccounts/savingApprovals.html">SAVING FD/RD ACCOUNTS</a>
+        <a class="nav-link" href="">PENDING TRANSACTIONS</a>
+        <a class="nav-link" href="">REVERSE TRANSACTIONS</a>
+        <a class="nav-link" href="">NON COMPLIANCES</a>
+        <a class="nav-link" href="">LOAN CLOSURE REQUESTS</a>
+        <a class="nav-link" href="">FD/RD CLOSURE REQUESTS</a>
+        <a class="nav-link" href="">SHARE/TRANSFER ALLOCATION</a>
+        <a class="nav-link" href="">SHARE SURRENDER</a>
+        <a class="nav-link" href="">IMPS TRANSFER APPROVAL</a>
+        <a class="nav-link" href="">WITHIN ACCOUNT TRANSFER</a>
+        <a class="nav-link" href="">PRINT REQUEST APPROVALS <button style="background-color: green;color: white;">New</button></a>
+    
+      </nav>
+    </div>
+   
+    
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusiness" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+      <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+      Business Loan
+      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+    </a>
+    
+    <div class="collapse" id="pagesCollapseBusiness" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+    <nav class="sb-sidenav-menu-nested nav">
+        <a class="nav-link" href="">Schemes</a>
+        <a class="nav-link" href="">Calculators</a>
+        <a class="nav-link" href="">Applications</a>
+        <a class="nav-link" href="">Disbursements</a>
+        <a class="nav-link" href="">Accounts</a>
+    </nav>
+    </div>
+                  <a class="nav-link" href="../../index.html">
+                    <div class="sb-nav-link-icon">
+                      <i class="fas fa-money-bill-wave-alt"></i>
+                    </div>
+                    PAYMENTS TO COLLECT
+                  </a>
+    
+                  <a class="nav-link" href="../../index.html">
+                    <div class="sb-nav-link-icon">
+                      <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    PAYMENTS TO RELEASE
+                  </a>
+    
+                  <a class="nav-link" href="../../index.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                    PASSBOOKS
+                  </a>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinessprint" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    PRINT DOCUMENTS
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinessprint" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinessprintassociate" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                   ASSOCIATES/ADVISORS
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinessprintassociate" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinessprintassociatewith" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                  WITH-IN-BANK-TRANSFER
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinessprintassociatewith" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinesspayment" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                PAYMENT GATEWAY
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinesspayment" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinesscibil" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    CIBIL REPORT
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinesscibil" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="./sidebar/Cibil Report/DownloadReport.html">Download Reports</a>
+                      
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinessreports" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                   REPORTS
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinessreports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinessdownloadreports" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                  DOWNLOAD REPORTS
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinessdownloadreports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+
+
+                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseBusinesshrmanagement" aria-expanded="false" aria-controls="pagesCollapseBusiness">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    HR MANAGEMENT
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  
+                  <div class="collapse" id="pagesCollapseBusinesshrmanagement" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                  <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="">Schemes</a>
+                      <a class="nav-link" href="">Calculators</a>
+                      <a class="nav-link" href="">Applications</a>
+                      <a class="nav-link" href="">Disbursements</a>
+                      <a class="nav-link" href="">Accounts</a>
+                  </nav>
+                  </div>
+    
+              
+    
+                 
+    
+                  <div
+                    class="collapse"
+                    id="collapseLayouts"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion"
+                  >
+                    <nav class="sb-sidenav-menu-nested nav">
+                      <a class="nav-link" href="../../layout-static.html"
+                        >Static Navigation</a
+                      >
+                      <a class="nav-link" href="../../layout-sidenav-light.html"
+                      >Light Sidenav</a
+                      >
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6 ">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">SINGLE DEPOSIT/WITHDRAW
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                       
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Account Type</option>
+                                            <option value="1">Saving</option>
+                                            <option value="2">RD</option>
+                                            <option value="3">FD</option>
+                                            <option value="3">DD</option>
+                                            <option value="3">Property Loan</option>
+                                            <option value="3">Deposite Loan</option>
+                                            <option value="3">Other Loan</option>
+                                          </select>
+                                      
+                                    <div class="small text-white"></div>
+                                </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">MULTI COLL.(CASH ONLY)
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Account Type</option>
+                                            <option value="1">Saving</option>
+                                            <option value="2">RD</option>
+                                            <option value="3">FD</option>
+                                            <option value="3">DD</option>
+                                            <option value="3">Property Loan</option>
+                                            <option value="3">Deposite Loan</option>
+                                            <option value="3">Other Loan</option>
+                                          </select>
+                                      
+                                    <div class="small text-white"></div>
+                                    </div>
+                                    
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">ASSOCIATE COLLECTION (CASH ONLY)
+                                      <div class="card-footer d-flex align-items-center justify-content-between gap-2">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>search associate code or name</option>
+                                            <option value="1">Please enter 3 or more character</option>
+                                          </select>
+                                      
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Account Type</option>
+                                            <option value="1">Saving</option>
+                                            <option value="2">RD</option>
+                                            <option value="3">FD</option>
+                                            <option value="3">DD</option>
+                                            <option value="3">Property Loan</option>
+                                            <option value="3">Deposite Loan</option>
+                                            <option value="3">Other Loan</option>
+                                          </select>
+                                      
+                                    <div class="small text-white"></div>
+                                        
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">MULTI DEBIT (CASH ONLY)
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                       
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Account Type</option>
+                                            <option value="1">Select Account Type</option>
+                                            <option value="2">Saving</option>                                           
+                                          </select>
+                                      
+                                    <div class="small text-white"></div>
+                                </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">GROUP COLLECTION (CASH ONLY) 
+                                      <div class="card-footer d-flex align-items-center justify-content-between gap-2">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Group </option>
+                                            <option value="1">Select Group</option>
+                                            <option value="2">G001-Saksham</option>                                           
+                                          </select>
+                                      
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select Account Type</option>
+                                            <option value="1">Saving</option>
+                                            <option value="2">RD</option>
+                                            <option value="3">FD</option>
+                                            <option value="3">DD</option>
+                                            <option value="3">Property Loan</option>
+                                            <option value="3">Deposite Loan</option>
+                                            <option value="3">Other Loan</option>
+                                          </select>
+                                        
+                                    </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                      
+                      <!-- Icon Cards Start -->
+                      <div class="bg-default">
+                        <div class="main-content">
+                          <div class="header bg-gradient-primary ">
+                            <div class="container-fluid">
+                              
+                           
+                            </div>
+                          </div>
+                          <!-- Page content -->
+                        </div>
+                      </div>
+
+
+                   
+                     
+                      <!-- Icon Cards End -->
+                        
+                      <!-- Tp Card start -->
+
+                      
+          <section class="section dashboard">
+            <div class="row">
+      
+              <!-- Left side columns -->
+              <div class="col-lg-12">
+                <div class="row mt-3">
+      
+                  <!-- Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">SMS BALANCE</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <!-- <i class="fas fa-university"></i> -->
+                            <div class=" rounded" style="font-size: 30px; color: red;">
+                              <i class="fas fa-comment-alt"></i>
+                            </div>
+                          </div>
+                          <div class="ps-3">
+                            <p>3508</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">MOBILE/DTH WALLET</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <!-- <i class="fas fa-university"></i> -->
+                            <div class=" rounded" style="font-size: 30px; color: red;">
+                              <i class="fas fa-mobile-alt"></i>
+                            </div>
+                          </div>
+                          <div class="ps-3">
+                            <p>0.00</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">IMPS WALLET</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <!-- <i class="fas fa-university"></i> -->
+                            <div class=" rounded" style="font-size: 30px; color: red;">
+                              <i class="fas fa-wallet"></i>
+                            </div>
+                          </div>
+                          <div class="ps-3">
+                            <p>Bal-790,45<br/>
+                              Av. Bal-790,45</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  
+
+
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">PREPAID CARD WALLET</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <!-- <i class="fas fa-university"></i> -->
+                            <div class=" rounded" style="font-size: 30px; color: red;">
+                              <i class="fas fa-wallet"></i>
+                            </div>
+                          </div>
+                          <div class="ps-3">
+                            <p>Disabled</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  </div><!-- End Sales Card -->
+                  </div><!-- End Sales Card -->
+
+
+                  <div class="col-lg-12">
+                    <div class="row mt-3 ">
+                  
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body " >
+                        <h6 class="card-title text-uppercase text-muted mb-0">NEW FUNDS TRANSFER IMPS/NEFT</h6>
+                        <div class="d-flex align-items-center" >
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-between" >
+                            <!-- <i class="fas fa-university"></i> -->
+                           
+                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow dashboard-icon-circle" >
+                              <i class="fas fa-plus dashboard-icon"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">FUNDS TRANSFER WITHIN BANK</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-between">
+                            <!-- <i class="fas fa-university"></i> -->
+                          
+                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow dashboard-icon-circle" >
+                              <i class="fas fa-plus dashboard-icon"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">NEW FUNDS TRANSFER IMPS/NEFT</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-between">
+                            <!-- <i class="fas fa-university"></i> -->
+                           
+                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow dashboard-icon-circle" >
+                              <i class="fas fa-plus dashboard-icon"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+                  <div class="col-md-3">
+                    <div class="card info-card sales-card">
+                      <div class="card-body">
+                        <h6 class="card-title text-uppercase text-muted mb-0">ATTENDANCE IN TIME: <br/> OUT TIME:</h6>
+                        <div class="d-flex align-items-center">
+                          <div class="card-icon rounded-circle d-flex align-items-center justify-content-between">
+                            <!-- <i class="fas fa-university"></i> -->
+                          <div class="icon icon-shape bg-danger text-white rounded-circle shadow dashboard-icon-circle" >
+                                                <i class="fas fa-plus dashboard-icon"></i>
+                                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Sales Card -->
+      
+                 
+                 
+      
+                 
+                 
+      
+      
+              
+      
+      
+                </div>
+              </div><!-- End Left side columns -->
+      
+              <!-- Right side columns -->
+            <!-- End Right side columns -->
+      
+            </div>
+          </section>
+                      <!-- Tp Card end -->
+                  
+
+                    <!-- Color Card  CSS -->
+
+                    <div class="card-container">
+                        <a class="card1" href="./sidebar/branches/branches.html">
+                          <h5>19</h5>
+                          <p class="h6">Branches<br/></p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>1</h5>
+                          <p class="h6">MEMBER SERVICE CENTERS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>1/1</h5>
+                          <p class="h6">GROUPS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>8663/8663</h5>
+                          <p class="h6">MEMBERS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        </div>
+                    <div class="card-container">
+                        <a class="card1" href="#">
+                          <h5>6892/6901</h5>
+                          <p class="h6">SAVING ACCOUNT</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>735/744</h5>
+                          <p class="h6">CURRENT ACCOUNT</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>631/3138</h5>
+                          <p class="h6">FIXED DEPOSIT(FD)</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>631/1012</h5>
+                          <p class="h6">MIS ACCOUNTS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        </div>
+                    <div class="card-container">
+                        <a class="card1" href="#">
+                          <h5>334/1176</h5>
+                          <p class="h6">RECURRING DEPOSITS (RD)</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>735/1904</h5>
+                          <p class="h6">DAILY DEPOSIT (DD)</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>0/0</h5>
+                          <p class="h6">GOLD LOANS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        <a class="card1" href="#">
+                          <h5>0/0</h5>
+                          <p class="h6">PROPERTY LOANS</p>
+                          <div class="go-corner" href="#">
+                            <div class="go-arrow">
+                              →
+                            </div>
+                          </div>
+                        </a>
+                        </div>
+                    <div class="card-container">
+                        <a class="card1" href="#">
+                            <h5>42/117</h5>
+                            <p class="h6"> DEPOSIT LOANS (RD)</p>
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+                          </a>
+                          <a class="card1" href="#">
+                            <h5>10/30</h5>
+                            <p class="h6">BUISSNES PERSONAL LOAN</p>
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+                          </a>
+                       
+                        </div>
+                    <!-- Color Card  CSS -->
+                       
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script>
+          // JavaScript to toggle the visibility of the forms based on the selected radio button
+          const savingRadios = document.getElementById('savingRadios');
+          const currentRadios = document.getElementById('currentRadios');
+          const savingForm = document.getElementById('savingForm');
+          const currentForm = document.getElementById('currentForm');
+      
+          savingRadios.addEventListener('change', () => {
+              if (savingRadios.checked) {
+                  savingForm.style.display = 'block';
+                  currentForm.style.display = 'none';
+              }
+          });
+      
+          currentRadios.addEventListener('change', () => {
+              if (currentRadios.checked) {
+                  savingForm.style.display = 'none';
+                  currentForm.style.display = 'block';
+              }
+          });
+      </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+    </body>
+</html>
